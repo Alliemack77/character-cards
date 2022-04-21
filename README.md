@@ -7,4 +7,4 @@ These cards were built using:
 - CSS 
 - CSS custom properties
 
-These cards are featured in the *[Vortex Project]()
+These cards are featured in the *[Vortex Project](https://github.com/Alliemack77/The-Vortex-Project)*
