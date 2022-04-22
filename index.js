@@ -5,11 +5,9 @@ document.addEventListener('readystatechange', (event) => {
 })
 
 const initApp = async () => {
-    // get all entries 
     const entries  = await getAllEntries();
     console.log("Entries: ", entries)
 
-    // process all entries
     if (entries.length) {
         processEntries(entries)
     }
@@ -28,16 +26,51 @@ const getAllEntries = async () => {
 
 }
 
-// F => process entries
 const processEntries = (entries) => {
     const cards = document.getElementById('cards')
-
-    // for each user in users, create an author
-    entries.map(entry => {
-        console.log(entry.id) 
-        // return user.userId
+    
+    entries.forEach(entry => {
+        const card = buildCard(entry)        
+        cards.append(card)
     })
+}
 
-    return cards
+
+const buildCard = (entry) => {
+
+    const card = document.createElement('div')
+    card.setAttribute('id', `card-${entry.id}`)
+    card.classList.add('card')
+
+    const title = createTitle(entry.name)
+    card.append(title)
+
+    const image = document.createElement('img')
+    image.classList.add('image')
+    image.src = "https://source.unsplash.com/random"
+    image.alt = `Doctor Who companion ${entry.name}`
+    card.append(image)
+
+    const overlay = document.createElement('div')
+    overlay.classList.add('overlay')
+    card.append(overlay)
+
+    const quote = document.createElement('q')
+    quote.classList.add('quote')
+    quote.textContent = `${entry.quote}`
+    overlay.append(quote)
+
+    return card
+
+}
+
+const createTitle = (name) => {
+   
+    const title = document.createElement('h2')
+    title.classList.add('title')
+    title.classList.add('gold');
+    title.textContent =`${name}`
+
+    return title
 }
 
