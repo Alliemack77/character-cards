@@ -1,6 +1,6 @@
 :root {
     --clr-bg-dark: hsl(253, 35%, 20%);
-    --clr-bg-light: #3d3267;
+    --clr-bg-light: hsl(252, 35%, 25%);
     --clr-gold: hsl(29, 92%, 57%);
     --clr-pink: hsl(346, 100%, 56%);
     --clr-teal: hsl(178, 71%, 55%);
@@ -47,10 +47,6 @@ h3,
 p {
     margin: 0;
 }
-
-
-
-
 
 /** Cards container **/
 .cards {
@@ -144,7 +140,6 @@ p {
     font-weight: var(--fw-300);
 }
 
-
 /** Utility classses **/
 .gold {
     --bottom-border-clr: var(--clr-gold);
@@ -173,6 +168,8 @@ p {
 .none {
     display: none;
 }
+
+
 
 
 

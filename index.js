@@ -6,14 +6,12 @@ document.addEventListener('readystatechange', (event) => {
 
 const initApp = async () => {
     const entries  = await getAllEntries();
-    console.log("Entries: ", entries)
 
     if (entries.length) {
         processEntries(entries)
     }
 }
 
-// F => get all antries
 const getAllEntries = async () => {
 
     try {
@@ -33,22 +31,20 @@ const processEntries = (entries) => {
         const card = buildCard(entry)        
         cards.append(card)
     })
+    
+    createH2ColorClass()
+    
 }
 
 
 const buildCard = (entry) => {
-
     const card = document.createElement('div')
-    card.setAttribute('id', `card-${entry.id}`)
     card.classList.add('card')
 
-    const title = createTitle(entry.name)
+    const title = createTitle(entry)
     card.append(title)
 
-    const image = document.createElement('img')
-    image.classList.add('image')
-    image.src = "https://source.unsplash.com/random"
-    image.alt = `Doctor Who companion ${entry.name}`
+    const image = createImage(entry)
     card.append(image)
 
     const overlay = document.createElement('div')
@@ -61,16 +57,56 @@ const buildCard = (entry) => {
     overlay.append(quote)
 
     return card
-
 }
 
-const createTitle = (name) => {
-   
+const createTitle = ({name}) => {
     const title = document.createElement('h2')
     title.classList.add('title')
-    title.classList.add('gold');
     title.textContent =`${name}`
 
     return title
 }
+
+const createImage = (entry) => {
+    const image = document.createElement('img')
+    image.classList.add('image')
+    image.src = "https://source.unsplash.com/random"
+    image.alt = `Doctor Who companion ${entry.name}`
+
+    return image
+}
+
+
+const createH2ColorClass = () => {
+    const titles = document.querySelectorAll('.card h2')
+    const colors = [
+        'gold', 
+        'pink', 
+        'teal', 
+        'purple', 
+        'green', 
+        'blue',
+        'gold', 
+        'pink', 
+        'teal', 
+        'purple', 
+        'green', 
+        'blue',
+    ]
+    let index = 0;
+
+    Array.from(titles).forEach(title => {
+        title.classList.add(`${colors[index]}`)
+        // index = index % colors.length;
+        index += 1
+    })
+}
+
+
+
+
+
+
+
+
 
